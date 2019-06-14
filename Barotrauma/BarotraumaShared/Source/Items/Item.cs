@@ -627,6 +627,8 @@ namespace Barotrauma
                     ic.OnItemLoaded();
                 }
             }
+
+            DebugConsole.Log("Created " + Name + " (" + ID + ")");
         }
 
         partial void InitProjSpecific();
@@ -1553,7 +1555,7 @@ namespace Barotrauma
 
         public void Use(float deltaTime, Character character = null, Limb targetLimb = null)
         {
-            if (RequireAimToUse && !character.IsKeyDown(InputType.Aim))
+            if (RequireAimToUse && (character == null || !character.IsKeyDown(InputType.Aim)))
             {
                 return;
             }
